@@ -1,20 +1,47 @@
+# def on_dropdown_select(event):
+#     selected_option = dropdown_var.get()
+#     result_label.config(text=f"Selected: {selected_option}")
+
+# root = tk.Tk()
+# root.title("เลือก")
+# label = tk.Label(root, text="เลือกต้นไม้:")
+# label.pack()
+# dropdown_var = tk.StringVar()
+# dropdown = ttk.Combobox(root, textvariable=dropdown_var)
+# dropdown['values'] = ('ต้นไม้1', 'ต้นไม้2', 'ต้นไม้3', 'ต้นไม้4')
+# dropdown.pack()
+# dropdown.bind("<<ComboboxSelected>>", on_dropdown_select)
+# result_label = tk.Label(root, text="")
+# result_label.pack()
+# button = tk.Button(text = "submit").pack()
+# root.mainloop()
 import tkinter as tk
 from tkinter import ttk
 
-def on_dropdown_select(event):
+def perform_action():
     selected_option = dropdown_var.get()
     result_label.config(text=f"Selected: {selected_option}")
 
 root = tk.Tk()
-root.title("เลือก")
-label = tk.Label(root, text="เลือกต้นไม้:")
+root.title("Action Button and Dropdown Example")
+
+label = tk.Label(root, text="เริ่ม")
 label.pack()
+
 dropdown_var = tk.StringVar()
+
 dropdown = ttk.Combobox(root, textvariable=dropdown_var)
+dropdown2 = ttk.Combobox(root, textvariable=dropdown_var)
 dropdown['values'] = ('ต้นไม้1', 'ต้นไม้2', 'ต้นไม้3', 'ต้นไม้4')
+dropdown2['values'] = ('ต้นไม้1', 'ต้นไม้2', 'ต้นไม้3', 'ต้นไม้4')
 dropdown.pack()
-dropdown.bind("<<ComboboxSelected>>", on_dropdown_select)
+label2 = tk.Label(root, text="to")
+label2.pack()
+dropdown2.pack()
+action_button = tk.Button(root, text="submit", command=perform_action)
+action_button.pack()
+
 result_label = tk.Label(root, text="")
 result_label.pack()
-button = tk.Button(text = "submit").pack()
+
 root.mainloop()
