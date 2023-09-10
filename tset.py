@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from PIL import Image,ImageTk
 
 def perform_action():
     selected_option = dropdown_var.get()
@@ -12,14 +13,16 @@ def perform_action():
     # result_label.config(text = dropdown_var2.get())
 
 root = tk.Tk()
-root.title("Action Button and Dropdown Example")
+root.title("ai")
 
 label = tk.Label(root, text="เริ่ม")
 label.pack()
-
+photo = tk.PhotoImage(file = r"D:\มินิโปรไมโคร\Ai\miniproject_python\img.png")
+tk.Button(root, text = 'Click Me !', image = photo).pack()
 dropdown_var = tk.StringVar()
 dropdown_var2 = tk.StringVar()
-
+canvas = tk.Canvas(root, width=300, height=50)
+canvas.pack()
 
 dropdown = ttk.Combobox(root, textvariable=dropdown_var)
 dropdown2 = ttk.Combobox(root, textvariable=dropdown_var2)
