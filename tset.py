@@ -1,11 +1,20 @@
-from tkinter import *
+import tkinter as tk
+from tkinter import ttk
 
-root = Tk()
-root.title("tk")
+def on_dropdown_select(event):
+    selected_option = dropdown_var.get()
+    result_label.config(text=f"Selected: {selected_option}")
 
-label = Label(text="Hello World")
-label2 = Label(text="Hello World2").pack()
-button = Button(text = "submit")
+root = tk.Tk()
+root.title("เลือก")
+label = tk.Label(root, text="เลือกต้นไม้:")
 label.pack()
-button.pack()
+dropdown_var = tk.StringVar()
+dropdown = ttk.Combobox(root, textvariable=dropdown_var)
+dropdown['values'] = ('ต้นไม้1', 'ต้นไม้2', 'ต้นไม้3', 'ต้นไม้4')
+dropdown.pack()
+dropdown.bind("<<ComboboxSelected>>", on_dropdown_select)
+result_label = tk.Label(root, text="")
+result_label.pack()
+button = tk.Button(text = "submit").pack()
 root.mainloop()
