@@ -4,11 +4,11 @@ from tkinter import font
 import tkinter.messagebox
 import queue
 import matplotlib.pyplot as plt
-
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 # getting heuristics from file
 def getHeuristics():
     heuristics = {}
-    f = open("..\py\work3\miniproject_python\heuristics.txt")
+    f = open("..\miniproject_python\heuristics.txt")
     for i in f.readlines():
         node_heuristic_val = i.split()
         heuristics[node_heuristic_val[0]] = int(node_heuristic_val[1])
@@ -20,7 +20,7 @@ def getHeuristics():
 def getCity():
     city = {}
     citiesCode = {}
-    f = open("..\py\work3\miniproject_python\cities.txt")
+    f = open("..\miniproject_python\cities.txt")
     j = 1
     for i in f.readlines():
         node_city_val = i.split()
@@ -35,7 +35,7 @@ def getCity():
 # creating cities graph from file
 def createGraph():
     graph = {}
-    file = open("..\py\work3\miniproject_python\citiesGraph.txt")
+    file = open("..\miniproject_python\citiesGraph.txt")
     for i in file.readlines():
         node_val = i.split()
 
@@ -112,7 +112,7 @@ def drawMap(city, gbfs, graph):
             continue
 
     # plt.errorbar(1, 1, label="GBFS", color="red")
-    plt.legend(loc="lower left")
+    # plt.legend(loc="lower left")
     plt.show()
 
 
@@ -126,17 +126,22 @@ def root():
     heuristic = getHeuristics()
     graph = createGraph()
     city, citiesCode = getCity()
+    fig,ax = plt.subplots()
 
+    
     frame = Frame(root)
+    
+
     frame.pack()
 
     frame_label_1 = LabelFrame(frame, border=0)
     frame_label_1.grid(row=0, column=0, padx=20, pady=20)
 
-    photo = PhotoImage(file = '..\py\work3\miniproject_python\imge.png')
-    label_img = Label(frame_label_1, image=photo)
-    label_img.grid(row=0,column=0)
-
+    # photo = PhotoImage(file = '..\miniproject_python\imge.png')
+    # label_img = Label(frame_label_1, image=photo)
+    # label_img.grid(row=0,column=0)
+    
+    
     for widget in frame_label_1.winfo_children():
         widget.grid_configure(padx=10, pady=5)
 
@@ -162,14 +167,20 @@ def root():
             label_end_txt.grid(row=2,column=0)
 
             gbfs = GBFS(cityName, heuristic, graph)
-            label_print_gbfs = Label(frame_label_3, text=[*gbfs], bg="white", width=47)
+            label_print_gbfs = Label(frame_label_3, text=['city : ',*gbfs], bg="white", width=47)
             label_print_gbfs.grid(row=3,column=0)
+            
 
+                     
+           
             print("GBFS => ", gbfs)
-
+     
             def on_click_2():
-                drawMap(city, gbfs, graph)
+                drawMap(city, gbfs, graph) 
+                canvas =FigureCanvasTkAgg(fig,master=frame)
+                canvas.get_tk_widget().grid(row=0,column=0)
 
+                
             btn_2 = Button(frame_label_3, text="Show path", command=on_click_2, width=10)
             btn_2.grid(row=4,column=0)
 
