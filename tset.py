@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # getting heuristics from file
 def getHeuristics():
     heuristics = {}
-    f = open("..\py\work3\miniproject_python\Treeheuristics.txt")
+    f = open("..\miniproject_python\Treeheuristics.txt")
     for i in f.readlines():
         node_heuristic_val = i.split()
         heuristics[node_heuristic_val[0]] = int(node_heuristic_val[1])
@@ -19,7 +19,7 @@ def getHeuristics():
 def gettree():
     tree = {}
     treeCode = {}
-    f = open("..\py\work3\miniproject_python\Trees.txt")
+    f = open("..\miniproject_python\Trees.txt")
     j = 1
     for i in f.readlines():
         node_tree_val = i.split()
@@ -34,7 +34,7 @@ def gettree():
 # creating cities graph from file
 def createGraph():
     graph = {}
-    file = open("..\py\work3\miniproject_python\TreesGraph.txt")
+    file = open("..\miniproject_python\TreesGraph.txt")
     for i in file.readlines():
         node_val = i.split()
 
@@ -132,7 +132,7 @@ def root():
     frame_label_1 = LabelFrame(frame, bg="#3D3E3A", border=0)
     frame_label_1.grid(row=0, column=0, padx=10, pady=10)
 
-    photo = PhotoImage(file = '..\py\work3\miniproject_python\pathmap.png')
+    photo = PhotoImage(file = '..\miniproject_python\pathmap.png')
     label_img = Label(frame_label_1, image=photo, width=1127, height=546)
     label_img.grid(row=0, column=0)
 
